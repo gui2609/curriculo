@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Guilherme Schumann</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- CONFIGURAÇÕES GERAIS (TELA) --- */
+        :root {
+            --primary-color: #0d47a1; 
+            --secondary-color: #1976d2;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.5; }
+
+        .container {
+            max-width: 1000px; margin: 30px auto; background: var(--white);
+            box-shadow: 0 0 30px rgba(0,0,0,0.15); display: grid;
+            grid-template-columns: 290px 1fr;
+            min-height: 90vh;
+        }
+
+        /* --- BARRA LATERAL --- */
+        .sidebar { background-color: var(--primary-color); color: var(--white); padding: 35px 30px; }
+        
+        .profile-img {
+            width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
+            border: 4px solid var(--white); display: block; margin: 0 auto 25px auto; background: #ddd;
+        }
+
+        .sidebar h2 {
+            font-size: 1.1rem; border-bottom: 1px solid var(--secondary-color);
+            padding-bottom: 8px; margin: 30px 0 15px 0; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .contact-info div { margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; }
+        .contact-info i { margin-right: 12px; width: 20px; text-align: center; font-size: 1rem;}
+        .contact-info a { color: var(--white); text-decoration: none; }
+        
+        .skills-list li { list-style: none; margin-bottom: 8px; font-size: 0.9rem; }
+        .skills-list li i { margin-right: 8px; color: var(--secondary-color);}
+
+        /* --- CONTEÚDO PRINCIPAL --- */
+        .main-content { padding: 50px 40px; }
+
+        .header-name h1 { font-size: 2.8rem; color: var(--primary-color); text-transform: uppercase; line-height: 1; margin-bottom: 5px; font-weight: 800;}
+        .header-name h3 { font-size: 1.3rem; color: #555; margin-bottom: 30px; font-weight: 400; }
+
+        .section-title {
+            font-size: 1.4rem; color: var(--primary-color); border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 8px; margin: 40px 0 20px 0; text-transform: uppercase; font-weight: 700;
+        }
+
+        .job-item { margin-bottom: 25px; }
+        .job-header { display: flex; justify-content: space-between; font-weight: 700; color: #222; font-size: 1.05rem;}
+        .job-company { font-style: italic; color: #666; margin-bottom: 8px; font-size: 0.95rem; }
+        .job-desc { font-size: 1rem; color: #444; }
+        .job-desc ul { margin-left: 20px; margin-top: 5px;}
+
+        /* --- PROJETOS (TELA) --- */
+        .projects-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px; margin-top: 25px;
+        }
+
+        .project-card {
+            border: none; border-radius: 12px; overflow: hidden;
+            background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .media-placeholder {
+            width: 100%; height: 140px; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 3rem;
+        }
+
+        .project-info { padding: 20px; }
+        .project-info h4 { color: var(--primary-color); margin-bottom: 8px; font-size: 1.1rem; font-weight: 700;}
+        .project-info p { font-size: 0.9rem; color: #666; }
+
+        .print-btn {
+            position: fixed; bottom: 30px; right: 30px;
+            background-color: var(--primary-color); color: white;
+            padding: 15px 25px; border-radius: 50px; border: none; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-size: 1rem;
+            display: flex; align-items: center; gap: 10px; z-index: 1000;
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; margin: 0;}
+            .sidebar { text-align: center; padding: 30px 20px;}
+            .contact-info div { justify-content: center; }
+        }
+
+        /* =========================================
+           CONFIGURAÇÃO DE IMPRESSÃO (CORRIGIDA)
+           ========================================= */
+        @media print {
+            @page { margin: 0; size: A4; }
+            
+            /* Força a impressão das cores de fundo (Correção da lateral branca) */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
+            body { background: white; zoom: 90%; /* Zoom suave para caber */ }
+
+            .container {
+                width: 100%; max-width: 100%; margin: 0; box-shadow: none;
+                grid-template-columns: 260px 1fr; /* Lateral ajustada */
+                min-height: 100vh; /* Força altura total */
+                display: grid;
+            }
+
+            .print-btn, footer { display: none !important; }
+
+            /* Ajustes de Margens para Apertar o Conteúdo */
+            .sidebar { padding: 20px !important; height: 100%; }
+            .main-content { padding: 25px 30px !important; }
+            
+            .profile-img { width: 120px; height: 120px; margin-bottom: 15px; }
+            .sidebar h2 { margin: 20px 0 10px 0; font-size: 1rem; }
+            .contact-info div, .skills-list li { margin-bottom: 6px; font-size: 0.85rem; }
+
+            .header-name h1 { font-size: 2.2rem; margin-bottom: 0; }
+            .header-name h3 { margin-bottom: 10px; font-size: 1.1rem; }
+            .section-title { margin: 20px 0 10px 0; font-size: 1.2rem; padding-bottom: 3px; border-width: 2px;}
+
+            /* Experiência compacta */
+            .job-item { margin-bottom: 15px; }
+            .job-desc { font-size: 0.9rem; }
+            .job-company { margin-bottom: 2px; }
+
+            /* Projetos Compactos (3 colunas) */
+            .projects-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 10px; margin-top: 10px;
+            }
+            .project-card { border: 1px solid #ddd; box-shadow: none; }
+            .media-placeholder { display: none !important; }
+            .project-info { padding: 8px; }
+            .project-info h4 { font-size: 0.9rem; margin-bottom: 3px; border-bottom: 1px solid #eee; }
+            .project-info p { font-size: 0.8rem !important; line-height: 1.2; }
+
+            /* Evita quebra de página */
+            .job-item, .project-card { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn" onclick="window.print()">
+        <i class="fas fa-file-pdf"></i> Salvar PDF
+    </button>
+
+    <div class="container">
+        <aside class="sidebar">
+            <img src="minha_foto.jpeg" alt="Guilherme Schumann" class="profile-img">
+
+            <div class="contact-info">
+                <h2>Contato</h2>
+                <div><i class="fas fa-map-marker-alt"></i> <span>Sinop - MT</span></div>
+                <div><i class="fab fa-whatsapp"></i> <span>(53) 99138-3780</span></div>
+                <div><i class="fas fa-envelope"></i> <span style="font-size: 0.85rem;">guilhermeschumann26 @gmail.com</span></div>
+                <div><i class="fab fa-linkedin"></i> <span>guilhermeschumann26/</span></div>
+                <div><i class="fab fa-github"></i> <span>gui2609</span></div>
+            </div>
+
+            <div class="skills">
+                <h2>Habilidades</h2>
+                <ul class="skills-list">
+                    <li><i class="fas fa-check"></i> Python (Automação/Dados)</li>
+                    <li><i class="fas fa-check"></i> QGIS Avançado</li>
+                    <li><i class="fas fa-check"></i> Agricultura Digital</li>
+                    <li><i class="fas fa-check"></i> Power BI & Excel</li>
+                    <li><i class="fas fa-check"></i> CRM / Sucesso do Cliente</li>
+                </ul>
+            </div>
+
+            <div class="languages">
+                <h2>Idiomas</h2>
+                <ul class="skills-list">
+                    <li><i class="fas fa-language"></i> Português (Nativo)</li>
+                    <li><i class="fas fa-language"></i> Inglês (A2 - Básico)</li>
+                    <li><i class="fas fa-language"></i> Espanhol (A2 - Básico)</li>
+                </ul>
+            </div>
+
+            <div class="certificates">
+                <h2>Certificados</h2>
+                <ul class="skills-list" style="font-size: 0.85rem;">
+                    <li>• AP na Colheita de Grãos</li>
+                    <li>• AP na Semeadura</li>
+                    <li>• AP em Diferentes Culturas</li>
+                    <li>• Atendimento ao Cliente Rural</li>
+                    <li>• Marketing para Produtores</li>
+                    <li>• Marca no Agronegócio</li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="header-name">
+                <h1>Guilherme C. Schumann</h1>
+                <h3>Engenheiro Agrícola</h3>
+            </div>
+
+            <section>
+                <div class="section-title">Resumo Profissional</div>
+                <p>
+                    Engenheiro Agrícola com sólida experiência no mercado de agricultura digital, atuando com foco em atendimento ao cliente, marketing de produto e geração de resultados. Especialista na implementação de relatórios técnicos, automação de processos via Python e análise de dados geoespaciais.
+                </p>
+            </section>
+
+            <section>
+                <div class="section-title">Experiência Profissional</div>
+
+                <div class="job-item">
+                    <div class="job-header">
+                        <span>Especialista de Marketing de Produto</span>
+                        <span>04/2023 - Atual</span>
+                    </div>
+                    <div class="job-company">Farmers Edge - Sinop, MT</div>
+                    <div class="job-desc">
+                        <ul>
+                            <li>Gestão de estratégias de marketing e mídias sociais voltadas ao agro.</li>
+                            <li>Habilidade de análise de mercado e apresentação de vendas para grandes contas.</li>
+                            <li>Suporte técnico avançado e resolução de problemas complexos.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job-item">
+                    <div class="job-header">
+                        <span>Especialista do Sucesso do Cliente PL</span>
+                        <span>04/2022 - 04/2023</span>
+                    </div>
+                    <div class="job-company">Farmers Edge Brasil - Pelotas, RS (Remoto)</div>
+                    <div class="job-desc">
+                        <ul>
+                            <li>Foco em retenção e relacionamento de longo prazo com o cliente.</li>
+                            <li>Obtenção de resultados técnicos comprovados através de agricultura digital.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job-item">
+                    <div class="job-header">
+                        <span>Especialista do Sucesso do Cliente JR</span>
+                        <span>10/2021 - 04/2022</span>
+                    </div>
+                    <div class="job-company">Farmers Edge - Pelotas, RS</div>
+                    <div class="job-desc">
+                        <ul>
+                            <li>Garantia da satisfação e sucesso do cliente no uso da plataforma.</li>
+                            <li>Comunicação constante para entender necessidades do produtor.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-title">Formação Acadêmica</div>
+                <div class="job-item">
+                    <div class="job-header">
+                        <span>Engenharia Agrícola</span>
+                        <span>2014 - 2020</span>
+                    </div>
+                    <div class="job-company">Universidade Federal de Pelotas (UFPel)</div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-title">Portfólio de Projetos</div>
+                <div class="projects-grid">
+                    
+                    <article class="project-card">
+                        <div class="media-placeholder"><i class="fas fa-map-marked-alt"></i></div>
+                        <div class="project-info">
+                            <h4>Projeto de Linhas (QGIS)</h4>
+                            <p>Sistematização de linhas de plantio e colheita utilizando QGIS e ferramentas de AP para otimização de tráfego controlado.</p>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="media-placeholder"><i class="fab fa-whatsapp"></i></div>
+                        <div class="project-info">
+                            <h4>Bot WhatsApp (Python)</h4>
+                            <p>Automação de respostas, triagem de solicitações de clientes e envio automático de relatórios.</p>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="media-placeholder"><i class="fas fa-cloud-sun-rain"></i></div>
+                        <div class="project-info">
+                            <h4>Dashboard Clima</h4>
+                            <p>Painel interativo para monitoramento de condições meteorológicas em tempo real para tomada de decisão.</p>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="media-placeholder"><i class="fas fa-tractor"></i></div>
+                        <div class="project-info">
+                            <h4>Telemetria de Máquinas</h4>
+                            <p>Análise de dados de CAN Bus para monitoramento de eficiência operacional e consumo de combustível.</p>
+                        </div>
+                    </article>
+
+                     <article class="project-card">
+                        <div class="media-placeholder"><i class="fas fa-tint"></i></div>
+                        <div class="project-info">
+                            <h4>Balanço Hídrico</h4>
+                            <p>Sistema desenvolvido para cálculo de reposição de água no solo e manejo eficiente da irrigação.</p>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p style="text-align: center; padding: 20px; font-size: 0.8rem; color: #777;">&copy; 2025 Guilherme Schumann</p>
+    </footer>
+</body>
+</html>
